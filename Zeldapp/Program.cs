@@ -44,12 +44,6 @@ namespace Zeldapp
             //Affichage du menu du jeu et des instructions
             displayInstructions();
 
-            System.Console.WriteLine("BONJOUR");
-
-
-
-            System.Console.WriteLine("éropjfozrfjzpjp");
-
             //AFFICHAGE DE LA MAP
             //Haut de map
             for (int i = 0; i < 120; i++)
