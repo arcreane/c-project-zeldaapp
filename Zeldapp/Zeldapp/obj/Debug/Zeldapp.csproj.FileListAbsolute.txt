@@ -1,6 +1,0 @@
-D:\Webstart\Dev1\POO\Zeldapp\Zeldapp\bin\Debug\Zeldapp.exe.config
-D:\Webstart\Dev1\POO\Zeldapp\Zeldapp\bin\Debug\Zeldapp.exe
-D:\Webstart\Dev1\POO\Zeldapp\Zeldapp\bin\Debug\Zeldapp.pdb
-D:\Webstart\Dev1\POO\Zeldapp\Zeldapp\obj\Debug\Zeldapp.csprojAssemblyReference.cache
-D:\Webstart\Dev1\POO\Zeldapp\Zeldapp\obj\Debug\Zeldapp.exe
-D:\Webstart\Dev1\POO\Zeldapp\Zeldapp\obj\Debug\Zeldapp.pdb
