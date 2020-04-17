@@ -15,7 +15,7 @@ namespace Zeldapp
         private int health; //Vie du joueur
         private int attack; //Attaque du joueur
 
-
+        private Key myKey = null;
         //Constructeur du player
         public Player(string name, string type)
         {
@@ -36,6 +36,20 @@ namespace Zeldapp
                     break;
             }
 
+        }
+
+        internal void enterRoom(Salle salle)
+        {
+            this.fight(salle.RoomMonster);
+            if(salle.HasKey())
+            {
+                Console.WriteLine("Congrats t'as choppé la clé");
+            }
+        }
+
+        private void fight(Monster roomMonster)
+        {
+            
         }
     }
 }

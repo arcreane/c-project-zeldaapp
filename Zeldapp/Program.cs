@@ -24,7 +24,7 @@ namespace Zeldapp
         [DllImport("kernel32.dll", ExactSpelling = true)]
         private static extern IntPtr GetConsoleWindow();
 
-        Player zelda = null; //Création momentanée du player
+        static Player zelda = null; //Création momentanée du player
 
         static void Main(string[] args)
         {
@@ -43,16 +43,9 @@ namespace Zeldapp
             //Affichage du menu du jeu et des instructions
             displayInstructions();
 
-            Salle currentSalle = new Salle(0, 0); //Création de la salle A0 (début du jeu)
+            Dungeon d = new Dungeon();
 
-            currentSalle.getSalleName();
-
-            //Input de l'user
-            Console.WriteLine("Ou voulez-vous aller ? (North, East, South, West)");
-            Console.Write(">");
-            string direction = Console.ReadLine();
-
-            currentSalle.changeSalle(direction);
+            d.Host(zelda);
 
         }
 
@@ -137,10 +130,7 @@ namespace Zeldapp
 
             } while (!(userCharacter == "Guerrier" || userCharacter == "Mage"));
 
-            Player zelda = new Player("Link", userCharacter);
-
-
-
+            zelda = new Player("Link", userCharacter);
         }
 
     }

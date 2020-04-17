@@ -1,0 +1,14 @@
+﻿################################################################################
+# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
+################################################################################
+
+/obj/Zeldapp.csproj.nuget.g.targets
+/obj/Zeldapp.csproj.nuget.g.props
+/obj/Zeldapp.csproj.nuget.dgspec.json
+/obj/project.nuget.cache
+/obj/project.assets.json
+/obj/Debug/netcoreapp3.1/Zeldapp.csprojAssemblyReference.cache
+/obj/Debug/netcoreapp3.1/Zeldapp.assets.cache
+/obj/Debug/netcoreapp3.1/Zeldapp.AssemblyInfoInputs.cache
+/obj/Debug/netcoreapp3.1/Zeldapp.AssemblyInfo.cs
+/.vs/Zeldapp/v16/.suo
