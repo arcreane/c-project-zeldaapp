@@ -37,14 +37,5 @@ namespace Zeldapp
             }
 
         }
-
-
-        //Fonction qui renvoit le nom du joueur (Link par défaut)
-        public string getName()
-        {
-            return this.name;
-        }
-
-
     }
 }

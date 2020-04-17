@@ -40,53 +40,19 @@ namespace Zeldapp
                 DeleteMenu(sysMenu, SC_SIZE, MF_BYCOMMAND);
             }
 
-
             //Affichage du menu du jeu et des instructions
             displayInstructions();
 
-            //AFFICHAGE DE LA MAP
-            //Haut de map
-            for (int i = 0; i < 120; i++)
-            {
+            Salle currentSalle = new Salle(0, 0); //Création de la salle A0 (début du jeu)
 
-                if (i == 0)
-                    Console.Write('╔'); //Corner gauche
-                else if(i == 119)
-                    Console.Write("╗\r"); //Corner droite
-                else
-                    Console.Write('═'); //Ligne
-            }
-
-            //2eme ligne à 21eme ligne de map
-            for (int i = 0; i < 22; i++)
-            {
-                for (int y = 0; y < 120; y++)
-                {   
-                    if(i == 10 && y == 60)
-                        Console.Write('A'); //affichage du méchant
-                    else if(i == 21 && y == 60)
-                        Console.Write('P'); //affichage du héro
-                    else if (y == 0 || y == 119) 
-                        Console.Write('║'); //affichage des bordures pour les cotés gauche et droite
-                    else
-                        Console.Write('░');  
-                }
-            }
-
-            //Last ligne de la map
-            for (int i = 0; i < 120; i++)
-            {
-                if (i == 0)
-                    Console.Write('╚'); //Corner gauche
-                else if (i == 119)
-                    Console.Write("╝\r"); //Corner droite
-                else
-                    Console.Write('═'); //Ligne
-            }
+            currentSalle.getSalleName();
 
             //Input de l'user
+            Console.WriteLine("Ou voulez-vous aller ? (North, East, South, West)");
             Console.Write(">");
-            Console.ReadLine();
+            string direction = Console.ReadLine();
+
+            currentSalle.changeSalle(direction);
 
         }
 
@@ -109,7 +75,6 @@ namespace Zeldapp
 
             //Affichage du menu
             displayMenu();
-
         }
 
 
@@ -172,8 +137,8 @@ namespace Zeldapp
 
             } while (!(userCharacter == "Guerrier" || userCharacter == "Mage"));
 
-
             Player zelda = new Player("Link", userCharacter);
+
 
 
         }
