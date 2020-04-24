@@ -8,5 +8,6 @@ namespace Zeldapp
 {
     class Zombie : Monster
     {
+       
     }
 }

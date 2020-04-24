@@ -12,6 +12,7 @@ namespace Zeldapp
         //Les salles seront qualifiées par une lettre et un numéro (A0 pour la salle de départ)
         private int letter; //Lettre de la salle
         private int number; //Numéro de la salle
+        private Key myKey = null;
 
         //Booléen qui vont gérer si il peut aller au Nord, Sud, Est ou Ouest
         private bool isNorthOut, isSouthOut, isEastOut, isWeastOut;
@@ -36,6 +37,13 @@ namespace Zeldapp
             { false, false, false, false }, //D0 (n'exite pas) 30
             { false, false, false, true } //D1 (Salle de la KEY) 31
         };
+
+        internal bool HasKey()
+        {
+            return !(myKey == null);
+        }
+
+        public Monster RoomMonster { get; internal set; }
 
         //Création de la salle en fonction d'un num et d'une lettre
         public Salle(int letter, int number)

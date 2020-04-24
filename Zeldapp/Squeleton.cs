@@ -8,5 +8,12 @@ namespace Zeldapp
 {
     class Squeleton : Monster
     {
+        public Squeleton()
+        {
+
+            Random gp = new Random();
+            string MonType = "Skeleton";
+            int Life = 5;
+        }
     }
 }
