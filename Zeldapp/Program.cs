@@ -24,7 +24,7 @@ namespace Zeldapp
         [DllImport("kernel32.dll", ExactSpelling = true)]
         private static extern IntPtr GetConsoleWindow();
 
-        static Player zelda = null; //Création momentanée du player
+        static Player link = null; //Création momentanée du player
 
         static void Main(string[] args)
         {
@@ -43,9 +43,16 @@ namespace Zeldapp
             //Affichage du menu du jeu et des instructions
             displayInstructions();
 
+            //Création du donjon
             Dungeon d = new Dungeon();
 
-            d.Host(zelda);
+            //on répete cela tant que le joueur n'est pas mort
+            do
+            {
+                //le donjon accueille le personnage
+                d.Host(link);
+            } while (link.getHealth() != 0);
+            
 
         }
 
@@ -76,8 +83,7 @@ namespace Zeldapp
         {
 
             Console.WriteLine("1 - Play");
-            Console.WriteLine("2 - Graphics Options");
-            Console.WriteLine("3 - Quit");
+            Console.WriteLine("2 - Quit");
 
             string userRespons = "0";
 
@@ -88,7 +94,7 @@ namespace Zeldapp
                 Console.Write("\n>");
                 userRespons = Console.ReadLine();
 
-            } while (!(userRespons == "1" || userRespons == "2" || userRespons == "3")); //tant qu'il ne répond pas un des 3 cas on boucle
+            } while (!(userRespons == "1" || userRespons == "2")); //tant qu'il ne répond pas un des 3 cas on boucle
 
 
             //En fonction de son choix, on lance la méthode qui va bien
@@ -99,13 +105,8 @@ namespace Zeldapp
                     chooseCharacter();
                     break;
 
-                //Pour le cas ou il veut modifier les paramètres graphiques
-                case "2":
-                    
-                    break;
-
                 //Pour le cas ou il veut quitter le jeu
-                case "3":
+                case "2":
                     System.Environment.Exit(0);
                     break;
             }
@@ -130,7 +131,7 @@ namespace Zeldapp
 
             } while (!(userCharacter == "Guerrier" || userCharacter == "Mage"));
 
-            zelda = new Player("Link", userCharacter);
+            link = new Player("Link", userCharacter); //Création officielle du perso
         }
 
     }
