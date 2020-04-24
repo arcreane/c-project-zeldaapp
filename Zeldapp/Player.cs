@@ -15,7 +15,7 @@ namespace Zeldapp
         private int health; //Vie du joueur
         private int attack; //Attaque du joueur
 
-        private Key myKey = null;
+        private bool myKey; //booléen qui indique si le joueur possède la clé ou non
 
 
         //Constructeur du player
@@ -24,6 +24,7 @@ namespace Zeldapp
 
             this.name = name;
             this.type = type;
+            this.myKey = false; //il ne possède pas la clé lors de sa création
 
             switch (type)
             {
@@ -47,11 +48,21 @@ namespace Zeldapp
             salle.displaySalle();
 
             this.fight(salle.RoomMonster);
-            if(salle.HasKey())
-            {
-                Console.WriteLine("Congrats t'as choppé la clé");
-            }
 
+        }
+
+        //méthode qui renvoit vrai si le joueur possède la clé
+        public bool hasKey()
+        {
+            return this.myKey;
+        }
+
+        //Méthode qui est appelée lorsque le joueur trouve la clé 
+        public void foundKey()
+        {
+            Console.WriteLine("Vous avez trouve la cle !");
+            Console.WriteLine("Vous pouvez entrer dans la salle du boss !");
+            this.myKey = true; //on met le booléen à true
         }
 
         //Fonction qui renvoit la vie du joueur
@@ -59,6 +70,15 @@ namespace Zeldapp
         {
             return this.health;
         }
+
+
+        //Méthode qui va afficher les stats du joueur
+        public void displayStats()
+        {
+            //sa vie et si il possède la clé ou non
+            Console.WriteLine("---Life: " + getHealth().ToString() + "--- | --- Key " + hasKey().ToString() + "---");
+        }
+
 
         private void fight(Monster roomMonster)
         {

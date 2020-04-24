@@ -16,8 +16,6 @@ namespace Zeldapp
         private bool isKeyInThisSalle; //Booléen qui gére si la clé est dans cette salle ou non
         private bool isBossInThisSalle; //Booléen qui gére si le boss est dans cette salle ou non
 
-        private Key myKey = null;
-
         public Monster RoomMonster { get; internal set; }
 
 
@@ -112,21 +110,10 @@ namespace Zeldapp
             return this.isKeyInThisSalle;
         }
 
-        //Fonction qui retourne la lettre (transformée en int pour plus de facilité) de la salle
-        public int getSalleLetter()
+        //Méthode qui affiche le nom de la salle actuelle
+        public string getSalleName()
         {
-            return this.letter;
-        }
-
-        //Fonction qui retourne le numéro de la salle
-        public int getSalleNumber()
-        {
-            return this.number;
-        }
-
-        internal bool HasKey()
-        {
-            return !(myKey == null);
+            return (this.letter.ToString() + this.number.ToString());
         }
 
     }

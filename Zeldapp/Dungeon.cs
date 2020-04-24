@@ -14,6 +14,9 @@ namespace Zeldapp
 
         int x, y; //X et Y utilisés pour les coordonées des salles
 
+        //coordonnées de la clé en x et y et idem pour le boss en x et y
+        int xKeyCoord = 0, yKeyCoord = 0, xBossCoord = 0, yBossCoord = 0; 
+
         //Booléen qui gérent si les sorties d'une salle sont possibles ou non
         private bool isNorthOpened = false, isEastOpened = false, isSouthOpened = false, isWestOpened = false;
 
@@ -37,24 +40,18 @@ namespace Zeldapp
             x = 0;
             y = 0;
 
-            //----------------GENERATION DE LA CLÉ--------------------
-            //Creer 2 nombre random entre 0 et 3 pour savoir quelle salle a la clé
-            int xKeyCoord = rnd.Next(maxX); //création d'un nombre aléatoire pour générer la clé (en x)
-            int yKeyCoord = rnd.Next(maxY); //création d'un nombre aléatoire pour générer la clé (en y)
+            xKeyCoord = rnd.Next(maxX); //création d'un nombre aléatoire pour générer la clé (en x)
+            yKeyCoord = rnd.Next(maxY); //création d'un nombre aléatoire pour générer la clé (en y)
 
             Rooms[xKeyCoord, xKeyCoord].setKey(); //on set la clé dans la salle ayant pour coordonnées les valeurs générées précédement
 
             //----------------GENERATION DU BOSS----------------------
-            //on fait également la même chose pour le boss MAIS il faut que les valeurs ne soient pas les mêmes
-            int xBossCoord = 0, yBossCoord = 0;
-
+            //on fait également la même chose pour le boss MAIS il faut que les valeurs ne soient pas les mêmes que la clé ni égales à 0
             do
             {
-
                 xBossCoord = rnd.Next(maxX); //Génération du boss en x
                 yBossCoord = rnd.Next(maxY); //génération du boss en y
-
-            } while (xKeyCoord != xBossCoord && yKeyCoord != yBossCoord); //tant que les valeurs de la clé et du boss sont les memes on boucle
+            } while ((xKeyCoord != xBossCoord && yKeyCoord != yBossCoord) && (xBossCoord == 0 && yBossCoord == 0)); //tant que les valeurs de la clé et du boss sont les memes ou qu'elles sont égales à 0 on boucle
 
             Rooms[xBossCoord, yBossCoord].setBoss();
 
@@ -65,12 +62,22 @@ namespace Zeldapp
         {
 
             string possibleDirections = "( "; //String qui contiendra les directions possibles a emprunter quand il sera dans une salle
-            int newX, newY;
 
+            //on fait rentrer le joueur dans la salle
             link.enterRoom(Rooms[x, y]);
 
+            //Console.WriteLine("Xk:" + xKeyCoord + " Yk:" + yKeyCoord);
+            //Console.WriteLine("Xb:" + xBossCoord + " Yb:" + yBossCoord);
+
+            //Si link rentre dans la salle qui possède la clé, on indique au joueur qu'il à trouvé la clé
+            if (Rooms[x, y].getKey())
+                link.foundKey(); //on appel la méthode qui va lui indiquer qu'li a trouvé la clé
+
+            //Affichage du nom de la salle
+            Console.Write("---Salle: " + Rooms[x, y].getSalleName() + "--- | ");
+
             //En fonction de la salle ou il est, les sorties West et East sont condannées ou non
-            if(x == 0){ //Dans le cas ou la salle est vers la gauche, la sortie West est condannée
+            if (x == 0){ //Dans le cas ou la salle est vers la gauche, la sortie West est condannée
                 isWestOpened = false;
                 isEastOpened = true;
             }else if(x == maxX-1){ //Dans le cas ou il est dans une salle le plus a droite, alors l'est devient condanée
@@ -117,6 +124,7 @@ namespace Zeldapp
                 string[] directionOpened = possibleDirections.Split(' '); //on divise les directions possible pour en avoir un tableau
 
                 //Affichage des infos de l'user
+                link.displayStats();
 
                 //Input de l'user
                 Console.WriteLine("Ou voulez-vous aller ? " + possibleDirections);
@@ -135,32 +143,29 @@ namespace Zeldapp
 
             } while (!isDirectionOpened);
 
-            //en fonction de son choix, on augmente soit x soit y, ou on les diminue
+            int newXCoord = x, newYCoord = y;
+
+            //en fonction de son choix, on augmente les nouvelles coordonées ou on les diminue
             switch (userDirection)
             {
                 case "North":
-                    y++; //Si il va au nord on augmente y
+                    newYCoord = y++; //Si il va au nord on augmente y
                     break;
 
                 case "East":
-                    x++; //si il va a l'est on augmente x
+                    newXCoord = x++; //si il va a l'est on augmente x
                     break;
 
                 case "South":
-                    y--; //si il va au sud on diminue y
+                    newYCoord = y--; //si il va au sud on diminue y
                     break;
 
                 case "West":
-                    x--; //si il va a l'ouest on diminue x
+                    newXCoord = x--; //si il va a l'ouest on diminue x
                     break;
             }
 
-            //attribution des nouvelles coordonnées de x et y
-            newX = x;
-            newY = y;
-
-            //on fait rentre le personnage dans le future salle avec les nouvelles coordonnées
-            link.enterRoom(Rooms[newX, newY]);
+            link.enterRoom(Rooms[newXCoord, newYCoord]);
 
         }
     }
