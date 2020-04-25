@@ -10,3 +10,7 @@ D:\Webstart\Dev1\POO\c-project-zeldaapp\Zeldapp\bin\Debug\Zeldapp.pdb
 D:\Webstart\Dev1\POO\c-project-zeldaapp\Zeldapp\obj\Debug\Zeldapp.csprojAssemblyReference.cache
 D:\Webstart\Dev1\POO\c-project-zeldaapp\Zeldapp\obj\Debug\Zeldapp.exe
 D:\Webstart\Dev1\POO\c-project-zeldaapp\Zeldapp\obj\Debug\Zeldapp.pdb
+C:\Users\napol\source\repos\c-project-zeldaapp\Zeldapp\obj\Debug\Zeldapp.csprojAssemblyReference.cache
+C:\Users\napol\source\repos\c-project-zeldaapp\Zeldapp\obj\Debug\Zeldapp.csproj.CoreCompileInputs.cache
+C:\Users\napol\source\repos\c-project-zeldaapp\Zeldapp\obj\Debug\Zeldapp.exe
+C:\Users\napol\source\repos\c-project-zeldaapp\Zeldapp\obj\Debug\Zeldapp.pdb
